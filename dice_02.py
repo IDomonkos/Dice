@@ -3,8 +3,14 @@ import random
 
 MIN = 1
 MAX = 6
+x = range(1, 21)
+dice_buttons = []
 
-layout = [[sg.Button('1'), sg.Button('Exit')],
+for i in x:
+    dice_buttons.append(sg.Button(str(i)))
+
+    layout = [dice_buttons,
+          [sg.Button('Exit')],
           [sg.Text("Ide jön majd...", key='TEXT')]]
 
 window = sg.Window('Dice roller', layout, resizable=True)
