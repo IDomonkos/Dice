@@ -9,8 +9,9 @@ dice_buttons = []
 for i in x:
     dice_buttons.append(sg.Button(str(i)))
 
-layout = [dice_buttons,
-          [sg.Button('Exit')]]
+    layout = [dice_buttons,
+          [sg.Button('Exit')],
+          [sg.Text("Ide jön majd...", key='TEXT')]]
 
 window = sg.Window('Dice roller', layout, resizable=True)
 
@@ -19,6 +20,6 @@ while True:
     if event in (None, 'Exit'):
         break
     if event in ('1'):
-        print(random.randint(MIN, MAX))
+        window['TEXT'].update(random.randint(MIN, MAX))
 
 window.close()
