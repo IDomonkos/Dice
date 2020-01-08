@@ -31,9 +31,12 @@ while True:
         success = rolls.count(5) + rolls.count(6)
         target = values['SLIDER']
         print(f'Target: {target} - Success: {success}')
+        evaluation = ''
         if target <= success:
-            window['TEXT'].update(f'success - {rolls}')
+            evaluation = 'success'
         else:
-            window['TEXT'].update(f'failure - {rolls}')
+            evaluation = 'failure'
+
+        window['TEXT'].update(f'{evaluation} - {rolls}')
 
 window.close()
