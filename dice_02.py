@@ -17,11 +17,25 @@ layout = [[sg.Slider(range=(1, 10), orientation='h', size=(34, 20), default_valu
 window = sg.Window('Dice roller', layout, resizable=True)
 
 
+def is_success(target, count):
+    return target <= count
+
+
 def evaluate_success(target, count):
-    if target <= count:
+    if is_success(target, count):
         return 'success'
     else:
         return'failure'
+
+
+def evaluate_glitch(rolls, success):
+    if rolls.count(1) * 2 > len(rolls):
+        if success:
+            return 'glitch'
+        else:
+            return 'critcal'
+    else:
+        return ''
 
 
 while True:
@@ -40,7 +54,8 @@ while True:
         target = values['SLIDER']
 
         evaluation = evaluate_success(target, success)
+        glitch = evaluate_glitch(rolls, is_success(target, success))
 
-        window['TEXT'].update(f'{evaluation}({success}) - {rolls}')
+        window['TEXT'].update(f'{evaluation}({success} {glitch}) - {rolls}')
 
 window.close()
